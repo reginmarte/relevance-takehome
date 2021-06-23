@@ -148,7 +148,7 @@ I recommend displaying in particular the fields that they have elected to search
 
 #### Any questions?
 
-If you have any questions, or need help, please reach out to me: daniel.palmer@vctr.ai
+If you have any questions, or need help, please reach out in the Slack channel we have invited you to!
 
 Understanding our API and vectors can be confusing at first! This is not a test on how well you understand vectors, so do not hesitate to ask if anything isn't clear. Asking is a good thing!
 

@@ -52,7 +52,7 @@ As the Text Search deployable will require you to identify which fields in the c
 
 ```js
 this.$axios.$get(
-  'https://vectorai-production-api.azurewebsites.net/project/collection_schema,
+  "https://vectorai-production-api.azurewebsites.net/project/collection_schema",
   {
     params: {
       username: "dummy-collections",
@@ -93,7 +93,7 @@ The API also allows you to set a weight for how much traditional text search inf
 The request for performing hybrid search looks like this:
 
 ```js
-this.$axios.$post('https://vectorai-production-api.azurewebsites.net/collection/advanced_hybrid_search, {
+this.$axios.$post("https://vectorai-production-api.azurewebsites.net/collection/advanced_hybrid_search", {
     username: "dummy-collections",
     api_key: "UzdYRktIY0JxNmlvb1NpOFNsenU6VGdTU0s4UjhUR0NsaDdnQTVwUkpKZw",
     collection_name: "" // add current collection name,
@@ -113,7 +113,7 @@ this.$axios.$post('https://vectorai-production-api.azurewebsites.net/collection/
 You'll notice that there needs to be a vector! To do that, hit this endpoint first:
 
 ```js
-this.$axios.$get('https://vectorai-production-api.azurewebsites.net/collection/encode_text, {
+this.$axios.$get("https://vectorai-production-api.azurewebsites.net/collection/encode_text", {
   params: {
     username: "dummy-collections",
     api_key: "UzdYRktIY0JxNmlvb1NpOFNsenU6VGdTU0s4UjhUR0NsaDdnQTVwUkpKZw",
@@ -144,6 +144,14 @@ Only allow them to select vector fields that have a length of `512` (see schema)
 If you have any questions, or need help, please reach out to me: daniel.palmer@vctr.ai
 
 Understanding our API and vectors can be confusing at first! This is not a test on how well you understand vectors, so do not hesitate to ask if anything isn't clear. Asking is a good thing!
+
+## Tailwind
+
+At Relevance AI, we use the Tailwind utility-first CSS framework. Tailwind acts more like a design system than a component based CSS framework like Bootstrap. It's great for rapid prototyping, where you care about custom design rather than templates.
+
+We'd ask that as much as possible, you use Tailwind in this project. I've created a single component, `<base-button>`, to demonstrate use of Tailwind CSS.
+
+Check out the [Tailwind docs](https://tailwindcss.com/);
 
 ## Nuxt
 

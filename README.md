@@ -102,7 +102,7 @@ this.$axios.$post("https://vectorai-production-api.azurewebsites.net/collection/
     text_fields: [] // add text fields user has selected to search,
     multivector_query: {
       query: {
-        vector: [] // insert vector of search query here (see next part),
+        vector: [], // insert vector of search query here (see next part)
         fields: [] // add vector fields user has selected to search
       }
     },
@@ -113,14 +113,17 @@ this.$axios.$post("https://vectorai-production-api.azurewebsites.net/collection/
 You'll notice that there needs to be a vector! To do that, hit this endpoint first:
 
 ```js
-this.$axios.$get("https://vectorai-production-api.azurewebsites.net/collection/encode_text", {
-  params: {
-    username: "dummy-collections",
-    api_key: "UzdYRktIY0JxNmlvb1NpOFNsenU6VGdTU0s4UjhUR0NsaDdnQTVwUkpKZw",
-    collection_name: "" // add current collection name,
-    text: "" // add search query to turn into a vector
+this.$axios.$get(
+  "https://vectorai-production-api.azurewebsites.net/collection/encode_text",
+  {
+    params: {
+      username: "dummy-collections",
+      api_key: "UzdYRktIY0JxNmlvb1NpOFNsenU6VGdTU0s4UjhUR0NsaDdnQTVwUkpKZw",
+      collection_name: "", // add current collection name
+      text: "" // add search query to turn into a vector
+    }
   }
-});
+);
 ```
 
 This will return a vector. This is an encoded version of the text you sent it, in the format of a large array of numbers. This is the vector to use in the hybrid search request above.

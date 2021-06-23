@@ -142,6 +142,10 @@ Note that you can identify the text and vector fields in the current collection 
 
 Only allow them to select vector fields that have a length of `512` (see schema). This is because vectors can only be searched against vectors of the same length, and our `encode_text` endpoint returns a `512` number long vector.
 
+Finally, you will need to display the results. There is not a huge emphasis on displaying the results in a pretty way - although how you choose to display the results is still interesting. The challenge here is that every collection will have different looking results.
+
+I recommend displaying in particular the fields that they have elected to search for each result. I also recommend not displaying the vector fields in results, as these are long and unwieldy - providing little visual value.
+
 #### Any questions?
 
 If you have any questions, or need help, please reach out to me: daniel.palmer@vctr.ai

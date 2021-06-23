@@ -152,9 +152,11 @@ Understanding our API and vectors can be confusing at first! This is not a test 
 
 At Relevance AI, we use the Tailwind utility-first CSS framework. Tailwind acts more like a design system than a component based CSS framework like Bootstrap. It's great for rapid prototyping, where you care about custom design rather than templates.
 
-We'd ask that as much as possible, you use Tailwind in this project. I've created a single component, `<base-button>`, to demonstrate use of Tailwind CSS.
+We'd ask that as much as possible, you use Tailwind in this project.
 
-Check out the [Tailwind docs](https://tailwindcss.com/);
+I've set up the Tailwind config so it has our blue color scheme and font. I've created a single component, `<base-button>`, to demonstrate a more complex use of Vue and Tailwind CSS.
+
+Check out the [Tailwind docs](https://tailwindcss.com/).
 
 ## Nuxt
 

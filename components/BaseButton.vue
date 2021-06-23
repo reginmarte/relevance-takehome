@@ -19,8 +19,7 @@
       'bg-gray-300 text-gray-500 cursor-not-allowed': disabled,
       'text-white': !disabled,
       'bg-blue-500 cursor-wait': loading,
-      'bg-red-600 hover:bg-red-500': error,
-      'bg-blue-600 hover:bg-blue-500': !loading && !disabled && !error
+      'bg-blue-600 hover:bg-blue-500': !loading && !disabled
     }"
     @click="handleClick"
   >
@@ -57,10 +56,6 @@ export default {
       default: false
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    error: {
       type: Boolean,
       default: false
     }

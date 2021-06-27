@@ -16,6 +16,7 @@
       <base-button>Example of BaseButton</base-button>
       <base-button disabled>Example of BaseButton (Disabled)</base-button>
       <base-button loading>Example of BaseButton (Loading)</base-button>
+      <base-button @click="$router.push('search')">Text Search</base-button>
     </div>
   </div>
 </template>

@@ -1,15 +1,16 @@
 <template>
-  <div class="mt-6">
-    <label for="slider" class="mt-2 text-md md:text-xl font-light font-semi">
-      Search Weighting
+  <div class="mt-5">
+
+    <label for="weight-slider" class="text-sm md:text-lg font-light font-semi">
+      Text Search Weight
     </label>
     <p class="text-sm md:text-md text-gray-500">
-      Set the weight to favour traditional text search over vector search
+      Set the weight of traditional texts over vectors in your search
     </p>
-    <input id="slider" class="w-full" type="range" min=minVal max=maxVal v-model="value">
-    <div class="flex justify-between text-xs text-gray-500">
-      <span class="left-0">TEXT</span>
-      <span class="right-0">VECTOR</span>
+    <p class="mt-2 text-sm md:text-md font-light font-semi">Weight:
+      <span>{{ percent }} %</span></p>
+    <input id="weight-slider" class=" w-full py-2" type="range" v-bind:min="minVal" v-bind:max="maxVal" v-model="weight">
+    <div class="flex justify-between text-sm text-gray-500">
     </div>
   </div>
 </template>
@@ -19,14 +20,25 @@
     props: {
       minVal: String,
       maxVal: String,
-      defaultVal: Number
     },
-    data: function () {
-      return {
-        value: this.defaultVal
+    computed: {
+      weight: {
+        get() {
+          return this.$store.state.weight * 1000
+        },
+        set(weight) {
+          let value = weight / 1000;    // convert to appropriate scale
+          this.$store.commit('setState', {key: 'weight', value})
+        }
+      },
+      percent() {
+        // convert to user-friendly percentage
+        let percent = ((this.weight - this.minVal) / (this.maxVal - this.minVal)) * 100;
+        return Math.round(percent)
       }
     }
   }
+
 </script>
 
 <style scoped>

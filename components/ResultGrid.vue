@@ -10,13 +10,6 @@
         </div>
       </div>
     </div>
-    <a href="#top" class="p-2 flex items-center justify-center text-gray-500 text-sm ">
-       <span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
-       </span>
-      <span class="pr-2">Back to top</span>
-    </a>
   </div>
   <!--Welcome placeholder-->
   <div v-else-if="showWelcome"

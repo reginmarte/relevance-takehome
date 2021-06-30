@@ -12,9 +12,8 @@ const store = () => {
       selectedFields: [],
       weight: 0.0625,    // translates to 50%
       query: "",
-      // result
       results: [],
-      // other
+      // loaders, placeholders
       status: {
         loadingFields: false,
         loadingResults: false,
@@ -23,9 +22,26 @@ const store = () => {
       }
     }),
     mutations: {
-      // todo: fix - separate into own mutations?
-      setState(state, {key, value}) {
-        state[key] = value;
+      setCollections(state, value) {
+        state.collections = value
+      },
+      setFields(state, value) {
+        state.fields = value
+      },
+      setSelectedCollection(state, value) {
+        state.selectedCollection = value
+      },
+      setSelectedFields(state, value) {
+        state.selectedFields = value
+      },
+      setWeight(state, value) {
+        state.weight = value
+      },
+      setQuery(state, value) {
+        state.query = value
+      },
+      setResults(state, value) {
+        state.results = value
       },
       clearFilters(state) {
         state.fields = [];
@@ -81,7 +97,7 @@ const store = () => {
             }
           }
         }
-        commit('setState', {key: 'fields', value: fieldOptions});
+        commit('setFields', fieldOptions);
         commit('setStatus', {key: 'loadingFields', status: false});
       },
       sendSearchRequest({state, commit, dispatch}, {vector, textFields, vectorFields}) {
@@ -102,7 +118,7 @@ const store = () => {
             },
             traditional_weight: weight
           }).then(({data}) => {
-          // Set results and results display
+          // Set results display
           let results = data && data['results'];
           if (results && results.length > 0) {
             dispatch('createResultDisplay', results);
@@ -137,8 +153,9 @@ const store = () => {
             });
             resultDisplay.push(entry)
           });
-          commit('setState', {key: 'results', value: resultDisplay});
+          commit('setResults', resultDisplay);
         } else {
+          // Don't show vector field -only results
           commit('setStatus', {key: 'showNoResults', status: true});
         }
         commit('setStatus', {key: 'loadingResults', status: false});

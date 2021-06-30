@@ -40,7 +40,7 @@
           return this.$store.state.selectedCollection
         },
         set(value) {
-          this.$store.commit('setState', {key: 'selectedCollection', value})
+          this.$store.commit('setSelectedCollection', value)
         }
       },
     },
@@ -64,7 +64,7 @@
           }
         }
       ).then(({data}) => data);
-      this.$store.commit('setState', {key: 'collections', value: data})
+      this.$store.commit('setCollections', data);
       // Setup collection options
       data.forEach(collection => {
         this.options = [...this.options, {id: collection, name: this.clean(collection)}]

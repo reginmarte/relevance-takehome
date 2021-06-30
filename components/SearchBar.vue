@@ -29,7 +29,7 @@
         set(value) {
           this.$store.commit('clearResults');
           this.$store.commit('setStatus', {key: 'showNoResults', value: false});
-          this.$store.commit('setState', {key: 'query', value})
+          this.$store.commit('setQuery', value)
         }
       },
       active() {

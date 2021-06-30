@@ -38,7 +38,7 @@
           return this.$store.state.selectedFields
         },
         set(value) {
-          this.$store.commit('setState', {key: 'selectedFields', value});
+          this.$store.commit('setSelectedFields', value);
         },
       },
       fields() {
@@ -57,10 +57,10 @@
         set() {
           if (this.selectAll) {
             // De-select all
-            this.$store.commit('setState', {key: 'selectedFields', value: []})
+            this.$store.commit('setSelectedFields', [])
           } else {
             // Select all
-            this.$store.commit('setState', {key: 'selectedFields', value: this.$store.state.fields})
+            this.$store.commit('setSelectedFields', this.$store.state.fields)
           }
         }
       }

@@ -1,12 +1,8 @@
 <template>
   <div class="relative rounded-md">
-    <!--    <label for="search" class="mt-2 text-md md:text-xl font-light font-semi">-->
-    <!--      Search-->
-    <!--    </label>-->
-    <!--        <p class="pl-1 text-md md:text-lg text-gray-500">-->
-<!--    <p class="text-md md:text-lg font-light text-gray-700">I'd like to search for ...</p>-->
+    <p class="pl-1 text-md text-gray-500">I'd like to search for ...</p>
     <div class="pt-2 flex items-center">
-      <input type="search" id="search" v-model="query" placeholder="Enter text search"
+      <input type="search" id="search" v-model="query" placeholder='Try "apples"'
              class="w-full md:text-lg font-light focus:ring-blue-300 focus:outline-none border-gray-300 shadow-inner rounded-md">
       <button class="ml-2 px-4 py-2 text-center text-md font-semibold shadow rounded-md"
               :disabled="!active"
@@ -42,13 +38,14 @@
     },
     methods: {
       async handleSubmit() {
-        this.$store.commit('setStatus', {key: 'loadingResults', status: true});
         this.$store.commit('setStatus', {key: 'showWelcome', value: false});
+        this.$store.commit('setStatus', {key: 'showNoResults', value: false});
+        this.$store.commit('setStatus', {key: 'loadingResults', status: true});
+        this.$store.commit('clearResults');
 
         const {selectedFields} = this.$store.state;
         let textFields = [];
         let vectorFields = [];
-
         // Separate text/vector fields
         selectedFields.forEach(({type, value}) => {
           if (type === 'text') {
@@ -57,12 +54,10 @@
             vectorFields.push(value)
           }
         });
-
         // Encode text
         const {vector} = await this.$axios.$post('https://vectorhub-models.westus2.azurecontainer.io/use/encode', {text: this.$store.state.query});
         // Submit search request
         this.$store.dispatch('sendSearchRequest', {vector, textFields, vectorFields});
-
       }
     },
 

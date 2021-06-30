@@ -9,9 +9,10 @@
     </p>
     <p class="mt-2 text-sm md:text-md font-light font-semi">Weight:
       <span>{{ percent }} %</span></p>
-    <input id="weight-slider" class=" w-full py-2" type="range" v-bind:min="minVal" v-bind:max="maxVal" v-model="weight">
-    <div class="flex justify-between text-sm text-gray-500">
-    </div>
+    <input id="weight-slider" class="w-full py-2" type="range" v-bind:min="minVal" v-bind:max="maxVal" v-model="weight">
+    <!--    <div class="-m-2 flex justify-between text-sm text-gray-500">-->
+    <!--      <span class="left-0">Text and Vector</span><span class="right-0">Text Only</span>-->
+    <!--    </div>-->
   </div>
 </template>
 

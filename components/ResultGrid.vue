@@ -1,28 +1,29 @@
 <template>
-  <div class="p-6" v-if="resultDisplay && resultDisplay.length > 0">
+  <div class="p-6" v-if="results && results.length > 0">
     <!--Results-->
-    <p class="md:text-xl text-gray-700 font-light" v-model.lazy="query">Results for "{{ query }}"</p>
-    <div class="mt-2 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
-      <div v-for="result in resultDisplay" class="mt-1 h-full space-y-4 mt-3 p-4 bg-white shadow rounded-md ">
+    <p class="my-2 md:text-xl text-gray-700 font-light" v-model.lazy="query">Results for "{{ query }}"</p>
+    <div class="mb-4 md:grid md:grid-cols-2 md:gap-4">
+      <div v-for="result in results" class="space-y-4 mt-3 md:mt-1 p-4 bg-white shadow rounded-md ">
         <div v-for="(value, key) in result">
-          <p class="text-md md:text-lg font-light overflow-ellipsis overflow-hidden">"{{ value }}"</p>
-          <p class="bottom-0 text-sm md:text-md text-gray-700">- {{ key }} </p>
+          <p class="text-sm md:text-md overflow-ellipsis overflow-hidden">{{ value }}</p>
+          <p v-if="value" class="text-xs md:text-xs font-light text-gray-700">{{ clean(key) }} </p>
         </div>
       </div>
     </div>
-    <pagination/>
+    <a href="#top" class="p-2 flex items-center justify-center text-gray-500 text-sm ">
+       <span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
+       </span>
+      <span class="pr-2">Back to top</span>
+    </a>
   </div>
-
   <!--Welcome placeholder-->
   <div v-else-if="showWelcome"
        class="md:w-full md:h-screen flex flex-col items-center justify-center p-8 font-light font-semi">
-    <p class="text-xl md:text-2xl text-gray-500">
-      Welcome to Text Search!</p>
-    <p class="mt-2 text-md md:text-lg text-gray-400">
-      Select a collection to begin
-    </p>
+    <p class="text-xl md:text-2xl text-gray-500">Welcome to Text Search!</p>
+    <p class="mt-2 text-md md:text-lg text-gray-400">Select a collection to begin</p>
   </div>
-
   <!-- No results-->
   <div v-else-if="showNoResults"
        class="md:w-full md:h-screen flex flex-col items-center justify-center p-8 font-light font-semi">
@@ -37,24 +38,8 @@
       query() {
         return this.$store.state.query;
       },
-      resultDisplay() {
-        const {selectedFields, results} = this.$store.state;
-        let data = [];
-        results.map((result) => {
-          let entry = {};
-          selectedFields.forEach(({type, value}) => {
-            if (type === 'text') {    // only show results for text fields
-              if (value.includes('.')) {
-                entry[value] = result[keys[0]] && result[keys[0]][keys[1]];
-                console.log(keys)
-              } else {
-                entry[value] = result[value];
-              }
-            }
-            data.push(entry)
-          });
-        });
-        return data
+      results() {
+        return this.$store.state.results;
       },
       showWelcome() {
         return this.$store.state.status.showWelcome;
